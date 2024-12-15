@@ -195,7 +195,7 @@ border: 2px solid #93BEE9;
                         if (period === 'AM' && hours === 12) hours = 0;
                         const cellMinutes = hours * 60 + minutes;
 
-                        if (Math.abs(currentMinutes - cellMinutes) <= 40) {
+                        if (Math.abs(currentMinutes - cellMinutes) <= 30) {
                             cell.classList.add("highlight");
                         }
                     }
