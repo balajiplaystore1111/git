@@ -111,7 +111,91 @@ border: 2px solid #93BEE9;
         .save-button:hover {
             background-color: #006BB7;
         }
-
+<style>
+    	body-diet {
+        	font-family: Arial, sans-serif;
+        	background-color: #006D5B;
+        	margin: 0;
+        	padding: 0;
+        	display: flex;
+        	flex-direction: column;
+        	justify-content: space-between;
+        	min-height: 100vh;
+    	}
+    	.container-diet {
+        	max-width: 800px;
+        	margin: 20px auto;
+        	background-color: #006D5B;
+        	border-radius: 10px;
+        	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        	overflow: hidden;
+        	display: none; /* Hidden by default */
+    	}
+    	.section-diet {
+        	padding: 20px;
+        	border: 5px solid #006D5B;
+        	margin-bottom: 10px;
+        	border-radius: 5px;
+        	background-color: #006D5B;
+        	transition: background-color 0.3s ease;
+    	}
+    	.active-diet {
+        	background-color: #60c9e6 !important;
+    	}
+    	.section-diet:hover {
+        	transform: scale(1.02);
+        	border-color: #93BEE9;
+    	}
+    	.yes-diet, .no-diet {
+        	padding: 15px;
+        	border-radius: 5px;
+        	margin-bottom: 10px;
+        	transition: all 0.3s ease;
+    	}
+    	.yes-diet {
+        	background-color: #0aa389;
+        	color: white;
+    	}
+    	.yes-diet:hover {
+        	background-color: #0cc4a5;
+    	}
+    	.no-diet {
+        	background-color: #FFBE9F;
+        	color: black;
+    	}
+    	.no-diet:hover {
+        	background-color: #FF935F;
+    	}
+    	h2 {
+        	color: white;
+        	margin-bottom: 15px;
+    	}
+    	ul {
+        	list-style: none;
+        	padding: 0;
+    	}
+    	li {
+        	margin-bottom: 5px;
+    	}
+    	.diet-button-diet {
+        	position: fixed;
+        	top: 5px;
+        	left: 90%;
+        	transform: translateX(-50%);
+        	padding: 10px 20px;
+        	background-color: #0aa389;
+        	color: white;
+        	border: none;
+        	border-radius: 10px;
+        	font-size: 15px;
+        	cursor: pointer;
+        	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        	transition: background-color 0.3s ease;
+    	}
+    	.diet-button-diet:hover {
+        	background-color: #0cc4a5;
+    	}
+	</style>
     </style>
 </head>
 <body>
@@ -215,8 +299,116 @@ border: 2px solid #93BEE9;
                 </tr>
             </tbody>
         </table>
+        <div class="container-diet">
+    	<div class="section-diet" data-time="7">
+        	<h2>Early Morning (7:00 AM)</h2>
+        	<div class="yes-diet">
+            	<ul>
+                	<h2>Yes</h2>
+                	<li>Skimmed Milk (or buttermilk)</li>
+                	<li>One variety of nuts (fistful each): Almonds (badam), Walnuts, Sunflower seeds, Flax seeds (soaked or heated)</li>
+                	<li>Ensure</li>
+            	</ul>
+        	</div>
+        	<div class="no-diet">
+            	<ul>
+                	<h2>No</h2>
+                	<li>Raw seeds</li>
+                	<li>Cashews, Pistachios, Raisins, Anjeera</li>
+            	</ul>
+        	</div>
+    	</div>
+
+    	<div class="section-diet" data-time="8">
+        	<h2>Breakfast (8:00 AM)</h2>
+        	<div class="yes-diet">
+            	<ul>
+                	<h2>Yes</h2>
+                	<li>Vegetable-based chutney (e.g., Pudina chutney)</li>
+                	<li>Jonnalu, Ragulu, Sabjaelu (Good for breakfast)</li>
+            	</ul>
+        	</div>
+        	<div class="no-diet">
+            	<ul>
+                	<h2>No</h2>
+                	<li>White rice, White idli, White upma</li>
+                	<li>Palli chutney, Kobari chutney</li>
+                	<li>Pachadi, Pickle, Karam podi</li>
+            	</ul>
+        	</div>
+    	</div>
+
+       	<div class="section-diet" data-time="10">
+        	<h2>Fruits (10:00 AM)</h2>
+        	<div class="yes-diet">
+            	<ul>
+             	<h2>Yes</h2>
+                	<li>One variety of fruit daily (e.g., Apple, Jamkai, Puchakai, Pomegranate (Danima), Kiwi, Dragon fruit)</li>
+                	<li>If blood sugar exceeds 200, switch to: Carrot salad, Kera salad</li>
+            	</ul>
+        	</div>
+        	<div class="no-diet">
+            	<ul>
+             	<h2>No</h2>
+                	<li>Mango, Banana, Grapes, Seetafal, Sapota</li>
+                	<li>Coconut water</li>
+            	</ul>
+        	</div>
+    	</div>
+
+    	<div class="section-diet" data-time="13">
+        	<h2>Lunch (1:00 PM)</h2>
+        	<div class="yes-diet">
+            	<ul>
+             	<h2>Yes</h2>
+                	<li>100 grams of brown rice or any combination of Jonna roti or Jonna roti with millet</li>
+                	<li>Avoid white rice (alternate days)</li>
+                	<li>Menthi kura (fenugreek leaves) - recommended daily, even if creatinine levels are high</li>
+                	<li>Sorakai (bottle gourd), Dosakai, Potlakai (ridge gourd)</li>
+                	<li>Kandi Pappy, Rajma, Chole, Soya, Meal maker</li>
+            	</ul>
+        	</div>
+        	<div class="no-diet">
+            	<ul>
+             	<h2>No</h2>
+                	<li>Vegetables like Potato, Sweet Potato, Kanda Gadda (yam), Chamagadda (taro)</li>
+                	<li>Leafy vegetables (if creatinine is high, exceeding 2)</li>
+                	<li>Tomato monagaku soup</li>
+            	</ul>
+        	</div>
+    	</div>
+
+    	<div class="section-diet" data-time="17">
+        	<h2>Evening (5:00 PM)</h2>
+        	<div class="yes-diet">
+            	<ul>
+                	<li>Dry fruits (Ensure)</li>
+            	</ul>
+        	</div>
+    	</div>
+
+    	<div class="section-diet" data-time="20">
+        	<h2>Dinner (8:00 PM)</h2>
+        	<div class="yes-diet">
+            	<ul>
+                	<li>Ragi roti, Ragi upma, or Millet upma (avoid in liquid form as it increases sugar levels)</li>
+            	</ul>
+        	</div>
+    	</div>
+
+    	<div class="section-diet" data-time="21">
+        	<h2>Bedtime (9:00 PM)</h2>
+        	<div class="yes-diet">
+            	<ul>
+                	<li>Ensure or any supplement</li>
+            	</ul>
+        	</div>
+    	</div>
+	</div>
+
  <button class="save-button" onclick="saveRemainData()">Save</button>
     </div>
+    <button class="diet-button-diet" onclick="toggleDietDiet()">Diet</button>
     <script>
         function checkAndHighlight() {
             const now = new Date();
@@ -275,7 +467,34 @@ border: 2px solid #93BEE9;
             loadRemainData();
         };
     </script>
+	<script>
+    	function toggleDietDiet() {
+        	const containerDiet = document.querySelector('.container-diet');
+        	if (containerDiet.style.display === 'none' || containerDiet.style.display === '') {
+            	containerDiet.style.display = 'block';
+        	} else {
+            	containerDiet.style.display = 'none';
+        	}
+    	}
+
+    	const sectionsDiet = document.querySelectorAll('.section-diet');
+    	const nowDiet = new Date();
+    	const currentHourDiet = nowDiet.getHours();
+    	const currentMinutesDiet = nowDiet.getMinutes();
+
+    	sectionsDiet.forEach(sectionDiet => {
+        	const sectionTimeDiet = parseInt(sectionDiet.getAttribute('data-time'));
+        	const startTimeDiet = sectionTimeDiet * 60; // Convert section time to minutes
+        	const endTimeDiet = startTimeDiet + 40; // Add 40 minutes to the section time
+        	const currentTimeInMinutesDiet = currentHourDiet * 60 + currentMinutesDiet;
+
+        	if (currentTimeInMinutesDiet >= startTimeDiet && currentTimeInMinutesDiet < endTimeDiet) {
+            	sectionDiet.classList.add('active-diet');
+        	}
+    	});
+	</script>
 </body>
 </html>
  
+
 
