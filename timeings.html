@@ -88,6 +88,30 @@ border: 2px solid #93BEE9;
                 padding: 5px;
             }
         }
+     /* Style for the input box */
+        input[type="text"] {
+            width: 20%;
+            padding: 5px;
+            font-size: 0.9rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .save-button {
+            padding: 10px 20px;
+            background-color: #0078d7;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .save-button:hover {
+            background-color: #006BB7;
+        }
+
     </style>
 </head>
 <body>
@@ -99,6 +123,7 @@ border: 2px solid #93BEE9;
                     <th>Tablet Name</th>
                     <th>Morning/Noon</th>
                     <th>Evening</th>
+ <th>Remaining</th>
                 </tr>
             </thead>
             <tbody>
@@ -107,75 +132,90 @@ border: 2px solid #93BEE9;
                     <td>Pantocid 40mg</td>
                     <td>✔ Before Breakfast</td>
                     <td></td>
+<td><input type="text" class="remain-input" value=""></td>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>Pan 40 (gas tablet)</td>
                     <td>✔ 7:00 AM</td>
                     <td></td>
+<td><input type="text" class="remain-input" value=""></td>
                 </tr>
                 <tr>
                     <td>6</td>
                     <td>Stiloz 100mg</td>
                     <td>✔ 7:00 AM</td>
                     <td>✔ 7:00 PM</td>
+<td><input type="text" class="remain-input" value=""></td>
                 </tr>
                 <tr>
                     <td>5</td>
                     <td>Trental 400mg</td>
                     <td>✔ 8:00 AM</td>
                     <td>✔ 8:00 PM</td>
+<td><input type="text" class="remain-input" value=""></td>
                 </tr>
                 <tr>
                     <td>4</td>
                     <td>Meaxon Plus</td>
                     <td>✔ 9:00 AM</td>
                     <td></td>
+<td><input type="text" class="remain-input" value=""></td>
                 </tr>
                 <tr>
                     <td>9</td>
                     <td>Bio D 3 Plus</td>
                     <td>✔ 11:00 AM</td>
                     <td></td>
+<td><input type="text" class="remain-input" value=""></td>
                 </tr>
                 <tr>
                     <td>11</td>
                     <td>Cranpac</td>
                     <td>✔ After Lunch (1:00 PM)</td>
                     <td></td>
+<td><input type="text" class="remain-input" value=""></td>
                 </tr>
                 <tr>
                     <td>7</td>
                     <td>A to Z</td>
                     <td>✔ 2:00 PM</td>
                     <td></td>
+<td><input type="text" class="remain-input" value=""></td>
                 </tr>
                 <tr>
                     <td>12</td>
                     <td>Trajenta</td>
                     <td>✔ After Lunch (2:00 PM)</td>
                     <td></td>
+<td><input type="text" class="remain-input" value=""></td>
                 </tr>
                 <tr>
                     <td>3</td>
                     <td>Eido Fe 100mg</td>
                     <td>✔ 4:00 PM</td>
                     <td></td>
+<td><input type="text" class="remain-input" value=""></td>
                 </tr>
                 <tr>
                     <td>10</td>
                     <td>Razel or Rosuvas</td>
                     <td></td>
+
                     <td>✔ Bedtime</td>
+<td><input type="text" class="remain-input" value=""></td>
                 </tr>
                 <tr>
                     <td>13</td>
                     <td>Tab 4 Abrad</td>
                     <td></td>
+
                     <td>✔ Before Dinner</td>
+<td><input type="text" class="remain-input" value=""></td>
                 </tr>
             </tbody>
         </table>
+ <button class="save-button" onclick="saveRemainData()">Save</button>
     </div>
     <script>
         function checkAndHighlight() {
@@ -195,7 +235,7 @@ border: 2px solid #93BEE9;
                         if (period === 'AM' && hours === 12) hours = 0;
                         const cellMinutes = hours * 60 + minutes;
 
-                        if (Math.abs(currentMinutes - cellMinutes) <= 25) {
+                        if (Math.abs(currentMinutes - cellMinutes) <= 35) {
                             cell.classList.add("highlight");
                         }
                     }
@@ -205,8 +245,37 @@ border: 2px solid #93BEE9;
 
         setInterval(checkAndHighlight, 60000); // Check every minute
         checkAndHighlight(); // Initial check
+     function saveRemainData() {
+            const remainInputs = document.querySelectorAll(".remain-input");
+            const remainData = [];
+
+            remainInputs.forEach((input, index) => {
+                remainData.push(input.value);
+            });
+
+            // Save the data in localStorage
+            localStorage.setItem('remainData', JSON.stringify(remainData));
+
+            alert("Data saved successfully!");
+        }
+
+        function loadRemainData() {
+            const savedData = JSON.parse(localStorage.getItem('remainData'));
+
+            if (savedData && savedData.length) {
+                const remainInputs = document.querySelectorAll(".remain-input");
+                remainInputs.forEach((input, index) => {
+                    input.value = savedData[index] || '';
+                });
+            }
+        }
+
+        // Load saved data when the page is loaded
+        window.onload = function() {
+            loadRemainData();
+        };
     </script>
 </body>
 </html>
-
+ 
 
