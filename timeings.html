@@ -1,500 +1,493 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medicine Schedule</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #006D5B;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: white;
-        }
-
-        .table-container {
-            width: 100%;
-            max-width: 1200px;
-            overflow-x: auto;
-            overflow-y: auto;
-             
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 10px;
-            max-height: 80vh;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #006D5B;
-            position: relative;
-        }
-
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border: 1px solid #ddd;
-             
-            color: white;
-        }
-
-        th {
-            background-color: #0078d7;
-            color: white;
-            font-size: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 2;
-        }
-
-        tr {
-            transition: all 0.3s ease;
-        }
-
-        tr:hover {
-            background-color: #00AD90;
-            transform: scale(1.20);
-border: 2px solid #93BEE9;
-        }
-
-        td {
-            font-size: 0.9rem;
-        }
-
-        .highlight {
-            background-color: #E993BE !important;
-            animation: blink 1s linear 5;
-        }
-
-        @keyframes blink {
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        @media (max-width: 768px) {
-            th, td {
-                font-size: 0.8rem;
-                padding: 10px;
-            }
-
-            .table-container {
-                padding: 5px;
-            }
-        }
-     /* Style for the input box */
-        input[type="text"] {
-            width: 20%;
-            padding: 5px;
-            font-size: 0.9rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .save-button {
-            padding: 10px 20px;
-            background-color: #0078d7;
-            border: none;
-            color: white;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-
-        .save-button:hover {
-            background-color: #006BB7;
-        }
-<style>
-    	body-diet {
-        	font-family: Arial, sans-serif;
-        	background-color: #006D5B;
-        	margin: 0;
-        	padding: 0;
-        	display: flex;
-        	flex-direction: column;
-        	justify-content: space-between;
-        	min-height: 100vh;
-    	}
-    	.container-diet {
-        	max-width: 800px;
-        	margin: 20px auto;
-        	background-color: #006D5B;
-        	border-radius: 10px;
-        	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        	overflow: hidden;
-        	display: none; /* Hidden by default */
-    	}
-    	.section-diet {
-        	padding: 20px;
-        	border: 5px solid #006D5B;
-        	margin-bottom: 10px;
-        	border-radius: 5px;
-        	background-color: #006D5B;
-        	transition: background-color 0.3s ease;
-    	}
-    	.active-diet {
-        	background-color: #60c9e6 !important;
-    	}
-    	.section-diet:hover {
-        	transform: scale(1.02);
-        	border-color: #93BEE9;
-    	}
-    	.yes-diet, .no-diet {
-        	padding: 15px;
-        	border-radius: 5px;
-        	margin-bottom: 10px;
-        	transition: all 0.3s ease;
-    	}
-    	.yes-diet {
-        	background-color: #0aa389;
-        	color: white;
-    	}
-    	.yes-diet:hover {
-        	background-color: #0cc4a5;
-    	}
-    	.no-diet {
-        	background-color: #FFBE9F;
-        	color: black;
-    	}
-    	.no-diet:hover {
-        	background-color: #FF935F;
-    	}
-    	h2 {
-        	color: white;
-        	margin-bottom: 15px;
-    	}
-    	ul {
-        	list-style: none;
-        	padding: 0;
-    	}
-    	li {
-        	margin-bottom: 5px;
-    	}
-    	.diet-button-diet {
-        	position: fixed;
-        	top: 5px;
-        	left: 90%;
-        	transform: translateX(-50%);
-        	padding: 10px 20px;
-        	background-color: #0aa389;
-        	color: white;
-        	border: none;
-        	border-radius: 10px;
-        	font-size: 15px;
-        	cursor: pointer;
-        	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        	transition: background-color 0.3s ease;
-    	}
-    	.diet-button-diet:hover {
-        	background-color: #0cc4a5;
-    	}
-	</style>
-    </style>
-</head>
-<body>
-    <div class="table-container">
-        <table>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Medicine Schedule</title>
+      <style>
+         body {
+         font-family: Arial, sans-serif;
+         margin: 0;
+         padding: 20px;
+         background-color: #006D5B;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         min-height: 100vh;
+         color: white;
+         }
+         .table-container {
+         width: 100%;
+         max-width: 1200px;
+         overflow-x: auto;
+         overflow-y: auto;
+         border-radius: 10px;
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+         padding: 10px;
+         max-height: 80vh;
+         }
+         table {
+         width: 100%;
+         border-collapse: collapse;
+         background-color: #006D5B;
+         position: relative;
+         }
+         th, td {
+         padding: 12px 15px;
+         text-align: left;
+         border: 1px solid #ddd;
+         color: white;
+         }
+         th {
+         background-color: #0078d7;
+         color: white;
+         font-size: 1rem;
+         position: sticky;
+         top: 0;
+         z-index: 2;
+         }
+         tr {
+         transition: all 0.3s ease;
+         }
+         tr:hover {
+         background-color: #00AD90;
+         transform: scale(1.20);
+         border: 2px solid #93BEE9;
+         }
+         td {
+         font-size: 0.9rem;
+         }
+         .highlight {
+         background-color: #E993BE !important;
+         animation: blink 1s linear 5;
+         }
+         @keyframes blink {
+         50% {
+         opacity: 0.5;
+         }
+         }
+         @media (max-width: 768px) {
+         th, td {
+         font-size: 0.8rem;
+         padding: 10px;
+         }
+         .table-container {
+         padding: 5px;
+         }
+         }
+         /* Style for the input box */
+         input[type="text"] {
+         width: 20%;
+         padding: 5px;
+         font-size: 0.9rem;
+         border: 1px solid #ddd;
+         border-radius: 5px;
+         }
+         .save-button {
+         padding: 10px 20px;
+         background-color: #0078d7;
+         border: none;
+         color: white;
+         font-size: 1rem;
+         cursor: pointer;
+         border-radius: 5px;
+         margin-top: 20px;
+         }
+         .save-button:hover {
+         background-color: #006BB7;
+         }
+      <style>
+         body-diet {
+         font-family: Arial, sans-serif;
+         background-color: #006D5B;
+         margin: 0;
+         padding: 0;
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+         min-height: 100vh;
+         }
+         .container-diet {
+         max-width: 800px;
+         margin: 20px auto;
+         background-color: #006D5B;
+         border-radius: 10px;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+         overflow: hidden;
+         display: none; /* Hidden by default */
+         }
+         .section-diet {
+         padding: 20px;
+         border: 5px solid #006D5B;
+         margin-bottom: 10px;
+         border-radius: 5px;
+         background-color: #006D5B;
+         transition: background-color 0.3s ease;
+         }
+         .active-diet {
+         background-color: #60c9e6 !important;
+         }
+         .section-diet:hover {
+         transform: scale(1.02);
+         border-color: #93BEE9;
+         }
+         .yes-diet, .no-diet {
+         padding: 15px;
+         border-radius: 5px;
+         margin-bottom: 10px;
+         transition: all 0.3s ease;
+         }
+         .yes-diet {
+         background-color: #0aa389;
+         color: white;
+         }
+         .yes-diet:hover {
+         background-color: #0cc4a5;
+         }
+         .no-diet {
+         background-color: #FFBE9F;
+         color: black;
+         }
+         .no-diet:hover {
+         background-color: #FF935F;
+         }
+         h2 {
+         color: white;
+         margin-bottom: 15px;
+         }
+         ul {
+         list-style: none;
+         padding: 0;
+         }
+         li {
+         margin-bottom: 5px;
+         }
+         .diet-button-diet {
+         position: fixed;
+         top: 5px;
+         left: 90%;
+         transform: translateX(-50%);
+         padding: 10px 20px;
+         background-color: #0aa389;
+         color: white;
+         border: none;
+         border-radius: 10px;
+         font-size: 15px;
+         cursor: pointer;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+         transition: background-color 0.3s ease;
+         }
+         .diet-button-diet:hover {
+         background-color: #0cc4a5;
+         }
+      </style>
+      </style>
+   </head>
+   <body>
+      <div class="table-container">
+         <table>
             <thead>
-                <tr>
-                    <th>S.No</th>
-                    <th>Tablet Name</th>
-                    <th>Morning/Noon</th>
-                    <th>Evening</th>
- <th>Remaining</th>
-                </tr>
+               <tr>
+                  <th>S.No</th>
+                  <th>Tablet Name</th>
+                  <th>Morning/Noon</th>
+                  <th>Evening</th>
+                  <th>Remaining</th>
+               </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>8</td>
-                    <td>Pantocid 40mg</td>
-                    <td>✔ Before Breakfast</td>
-                    <td></td>
-<td><input type="text" class="remain-input" value=""></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Pan 40 (gas tablet)</td>
-                    <td>✔ 7:00 AM</td>
-                    <td></td>
-<td><input type="text" class="remain-input" value=""></td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Stiloz 100mg</td>
-                    <td>✔ 7:00 AM</td>
-                    <td>✔ 7:00 PM</td>
-<td><input type="text" class="remain-input" value=""></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Trental 400mg</td>
-                    <td>✔ 8:00 AM</td>
-                    <td>✔ 8:00 PM</td>
-<td><input type="text" class="remain-input" value=""></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Meaxon Plus</td>
-                    <td>✔ 9:00 AM</td>
-                    <td></td>
-<td><input type="text" class="remain-input" value=""></td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Bio D 3 Plus</td>
-                    <td>✔ 11:00 AM</td>
-                    <td></td>
-<td><input type="text" class="remain-input" value=""></td>
-                </tr>
-                <tr>
-                    <td>11</td>
-                    <td>Cranpac</td>
-                    <td>✔ After Lunch (1:00 PM)</td>
-                    <td></td>
-<td><input type="text" class="remain-input" value=""></td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>A to Z</td>
-                    <td>✔ 2:00 PM</td>
-                    <td></td>
-<td><input type="text" class="remain-input" value=""></td>
-                </tr>
-                <tr>
-                    <td>12</td>
-                    <td>Trajenta</td>
-                    <td>✔ After Lunch (2:00 PM)</td>
-                    <td></td>
-<td><input type="text" class="remain-input" value=""></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Eido Fe 100mg</td>
-                    <td>✔ 4:00 PM</td>
-                    <td></td>
-<td><input type="text" class="remain-input" value=""></td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>Razel or Rosuvas</td>
-                    <td></td>
-
-                    <td>✔ Bedtime</td>
-<td><input type="text" class="remain-input" value=""></td>
-                </tr>
-                <tr>
-                    <td>13</td>
-                    <td>Tab 4 Abrad</td>
-                    <td></td>
-
-                    <td>✔ Before Dinner</td>
-<td><input type="text" class="remain-input" value=""></td>
-                </tr>
+               <tr>
+                  <td>2</td>
+                  <td id="pan-40">Pan 40 (gas tablet)</td>
+                  <td>✔ 7:00 AM</td>
+                  <td></td>
+                  <td><input type="text" class="remain-input" value=""></td>
+               </tr>
+               <tr>
+                  <td>6</td>
+                  <td>Stiloz 100mg</td>
+                  <td>✔ 7:00 AM</td>
+                  <td>✔ 7:00 PM</td>
+                  <td><input type="text" class="remain-input" value=""></td>
+               </tr>
+               <tr>
+                  <td>1</td>
+                  <td>Glucobay 25 </td>
+                  <td>✔ Before Breakfast</td>
+                  <td></td>
+                  <td><input type="text" class="remain-input" value=""></td>
+               </tr>
+               <tr>
+                  <td>8</td>
+                  <td>Pantocid 40mg</td>
+                  <td>✔ Before Breakfast</td>
+                  <td></td>
+                  <td><input type="text" class="remain-input" value=""></td>
+               </tr>
+               <tr>
+                  <td>5</td>
+                  <td>Trental 400mg</td>
+                  <td>✔ 8:00 AM</td>
+                  <td>✔ 8:00 PM</td>
+                  <td><input type="text" class="remain-input" value=""></td>
+               </tr>
+               <tr>
+                  <td>4</td>
+                  <td>Meaxon Plus</td>
+                  <td>✔ 9:00 AM</td>
+                  <td></td>
+                  <td><input type="text" class="remain-input" value=""></td>
+               </tr>
+               <tr>
+                  <td>9</td>
+                  <td>Bio D 3 Plus</td>
+                  <td>✔ 11:00 AM</td>
+                  <td></td>
+                  <td><input type="text" class="remain-input" value=""></td>
+               </tr>
+               <tr>
+                  <td>11</td>
+                  <td>Cranpac</td>
+                  <td>✔ After Lunch (1:00 PM)</td>
+                  <td></td>
+                  <td><input type="text" class="remain-input" value=""></td>
+               </tr>
+               <tr>
+                  <td>7</td>
+                  <td>A to Z</td>
+                  <td>✔ 2:00 PM</td>
+                  <td></td>
+                  <td><input type="text" class="remain-input" value=""></td>
+               </tr>
+               <tr>
+                  <td>12</td>
+                  <td>Trajenta</td>
+                  <td>✔ After Lunch (2:00 PM)</td>
+                  <td></td>
+                  <td><input type="text" class="remain-input" value=""></td>
+               </tr>
+               <tr>
+                  <td>3</td>
+                  <td>Eido Fe 100mg</td>
+                  <td>✔ 4:00 PM</td>
+                  <td></td>
+                  <td><input type="text" class="remain-input" value=""></td>
+               </tr>
+               <tr>
+                  <td>10</td>
+                  <td>Razel or Rosuvas</td>
+                  <td></td>
+                  <td>✔ Bedtime</td>
+                  <td><input type="text" class="remain-input" value=""></td>
+               </tr>
+               <tr>
+                  <td>13</td>
+                  <td>Tab 4 Abrad</td>
+                  <td></td>
+                  <td>✔ Before Dinner</td>
+                  <td><input type="text" class="remain-input" value=""></td>
+               </tr>
             </tbody>
-        </table>
-        <div class="container-diet">
-    	<div class="section-diet" data-time="7">
-        	<h2>Early Morning (7:00 AM)</h2>
-        	<div class="yes-diet">
-            	<ul>
-                	<h2>Yes</h2>
-                	<li>Skimmed Milk (or buttermilk)</li>
-                	<li>One variety of nuts (fistful each): Almonds (badam), Walnuts, Sunflower seeds, Flax seeds (soaked or heated)</li>
-                	<li>Ensure</li>
-            	</ul>
-        	</div>
-        	<div class="no-diet">
-            	<ul>
-                	<h2>No</h2>
-                	<li>Raw seeds</li>
-                	<li>Cashews, Pistachios, Raisins, Anjeera</li>
-            	</ul>
-        	</div>
-    	</div>
-
-    	<div class="section-diet" data-time="8">
-        	<h2>Breakfast (8:00 AM)</h2>
-        	<div class="yes-diet">
-            	<ul>
-                	<h2>Yes</h2>
-                	<li>Vegetable-based chutney (e.g., Pudina chutney)</li>
-                	<li>Jonnalu, Ragulu, Sabjaelu (Good for breakfast)</li>
-            	</ul>
-        	</div>
-        	<div class="no-diet">
-            	<ul>
-                	<h2>No</h2>
-                	<li>White rice, White idli, White upma</li>
-                	<li>Palli chutney, Kobari chutney</li>
-                	<li>Pachadi, Pickle, Karam podi</li>
-            	</ul>
-        	</div>
-    	</div>
-
-       	<div class="section-diet" data-time="10">
-        	<h2>Fruits (10:00 AM)</h2>
-        	<div class="yes-diet">
-            	<ul>
-             	<h2>Yes</h2>
-                	<li>One variety of fruit daily (e.g., Apple, Jamkai, Puchakai, Pomegranate (Danima), Kiwi, Dragon fruit)</li>
-                	<li>If blood sugar exceeds 200, switch to: Carrot salad, Kera salad</li>
-            	</ul>
-        	</div>
-        	<div class="no-diet">
-            	<ul>
-             	<h2>No</h2>
-                	<li>Mango, Banana, Grapes, Seetafal, Sapota</li>
-                	<li>Coconut water</li>
-            	</ul>
-        	</div>
-    	</div>
-
-    	<div class="section-diet" data-time="13">
-        	<h2>Lunch (1:00 PM)</h2>
-        	<div class="yes-diet">
-            	<ul>
-             	<h2>Yes</h2>
-                	<li>100 grams of brown rice or any combination of Jonna roti or Jonna roti with millet</li>
-                	<li>Avoid white rice (alternate days)</li>
-                	<li>Menthi kura (fenugreek leaves) - recommended daily, even if creatinine levels are high</li>
-                	<li>Sorakai (bottle gourd), Dosakai, Potlakai (ridge gourd)</li>
-                	<li>Kandi Pappy, Rajma, Chole, Soya, Meal maker</li>
-            	</ul>
-        	</div>
-        	<div class="no-diet">
-            	<ul>
-             	<h2>No</h2>
-                	<li>Vegetables like Potato, Sweet Potato, Kanda Gadda (yam), Chamagadda (taro)</li>
-                	<li>Leafy vegetables (if creatinine is high, exceeding 2)</li>
-                	<li>Tomato monagaku soup</li>
-            	</ul>
-        	</div>
-    	</div>
-
-    	<div class="section-diet" data-time="17">
-        	<h2>Evening (5:00 PM)</h2>
-        	<div class="yes-diet">
-            	<ul>
-                	<li>Dry fruits (Ensure)</li>
-            	</ul>
-        	</div>
-    	</div>
-
-    	<div class="section-diet" data-time="20">
-        	<h2>Dinner (8:00 PM)</h2>
-        	<div class="yes-diet">
-            	<ul>
-                	<li>Ragi roti, Ragi upma, or Millet upma (avoid in liquid form as it increases sugar levels)</li>
-            	</ul>
-        	</div>
-    	</div>
-
-    	<div class="section-diet" data-time="21">
-        	<h2>Bedtime (9:00 PM)</h2>
-        	<div class="yes-diet">
-            	<ul>
-                	<li>Ensure or any supplement</li>
-            	</ul>
-        	</div>
-    	</div>
-	</div>
-
- <button class="save-button" onclick="saveRemainData()">Save</button>
-    </div>
-    <button class="diet-button-diet" onclick="toggleDietDiet()">Diet</button>
-    <script>
-        function checkAndHighlight() {
-            const now = new Date();
-            const currentMinutes = now.getHours() * 60 + now.getMinutes();
-            const rows = document.querySelectorAll("tbody tr");
-
-            rows.forEach(row => {
-                const cells = row.querySelectorAll("td");
-                cells.forEach(cell => {
-                    const timeMatch = cell.textContent.match(/(\d{1,2}):(\d{2}) (AM|PM)/);
-                    if (timeMatch) {
-                        let [_, hours, minutes, period] = timeMatch;
-                        hours = parseInt(hours, 10);
-                        minutes = parseInt(minutes, 10);
-                        if (period === 'PM' && hours !== 12) hours += 12;
-                        if (period === 'AM' && hours === 12) hours = 0;
-                        const cellMinutes = hours * 60 + minutes;
-
-                        if (Math.abs(currentMinutes - cellMinutes) <= 35) {
-                            cell.classList.add("highlight");
-                        }
-                    }
-                });
-            });
-        }
-
-        setInterval(checkAndHighlight, 60000); // Check every minute
-        checkAndHighlight(); // Initial check
-     function saveRemainData() {
-            const remainInputs = document.querySelectorAll(".remain-input");
-            const remainData = [];
-
-            remainInputs.forEach((input, index) => {
-                remainData.push(input.value);
-            });
-
-            // Save the data in localStorage
-            localStorage.setItem('remainData', JSON.stringify(remainData));
-
-            alert("Data saved successfully!");
-        }
-
-        function loadRemainData() {
-            const savedData = JSON.parse(localStorage.getItem('remainData'));
-
-            if (savedData && savedData.length) {
-                const remainInputs = document.querySelectorAll(".remain-input");
-                remainInputs.forEach((input, index) => {
-                    input.value = savedData[index] || '';
-                });
-            }
-        }
-
-        // Load saved data when the page is loaded
-        window.onload = function() {
-            loadRemainData();
-        };
-    </script>
-	<script>
-    	function toggleDietDiet() {
-        	const containerDiet = document.querySelector('.container-diet');
-        	if (containerDiet.style.display === 'none' || containerDiet.style.display === '') {
-            	containerDiet.style.display = 'block';
-        	} else {
-            	containerDiet.style.display = 'none';
-        	}
-    	}
-
-    	const sectionsDiet = document.querySelectorAll('.section-diet');
-    	const nowDiet = new Date();
-    	const currentHourDiet = nowDiet.getHours();
-    	const currentMinutesDiet = nowDiet.getMinutes();
-
-    	sectionsDiet.forEach(sectionDiet => {
-        	const sectionTimeDiet = parseInt(sectionDiet.getAttribute('data-time'));
-        	const startTimeDiet = sectionTimeDiet * 60; // Convert section time to minutes
-        	const endTimeDiet = startTimeDiet + 40; // Add 40 minutes to the section time
-        	const currentTimeInMinutesDiet = currentHourDiet * 60 + currentMinutesDiet;
-
-        	if (currentTimeInMinutesDiet >= startTimeDiet && currentTimeInMinutesDiet < endTimeDiet) {
-            	sectionDiet.classList.add('active-diet');
-        	}
-    	});
-	</script>
-</body>
+         </table>
+         <div class="container-diet">
+            <div class="section-diet" data-time="7">
+               <h2 id="early-morning">Early Morning (7:00 AM)</h2>
+               <div class="yes-diet">
+                  <ul>
+                     <h2>Yes</h2>
+                     <li>Skimmed Milk (or buttermilk)</li>
+                     <li>One variety of nuts (fistful each): Almonds (badam), Walnuts, Sunflower seeds, Flax seeds (soaked or heated)</li>
+                  </ul>
+               </div>
+               <div class="no-diet">
+                  <ul>
+                     <h2>No</h2>
+                     <li>Raw seeds</li>
+                     <li>Cashews, Pistachios, Raisins, Anjeera</li>
+                  </ul>
+               </div>
+            </div>
+            <div class="section-diet" data-time="8">
+               <h2>Breakfast (8:00 AM)</h2>
+               <div class="yes-diet">
+                  <ul>
+                     <h2>Yes</h2>
+                     <li>Vegetable-based chutney (e.g., Pudina chutney)</li>
+                     <li>Jonnalu, Ragulu, Sabjaelu (Good for breakfast)</li>
+                  </ul>
+               </div>
+               <div class="no-diet">
+                  <ul>
+                     <h2>No</h2>
+                     <li>White rice, White idli, White upma</li>
+                     <li>Palli chutney, Kobari chutney</li>
+                     <li>Pachadi, Pickle, Karam podi</li>
+                  </ul>
+               </div>
+            </div>
+            <div class="section-diet" data-time="10">
+               <h2>Fruits (10:00 AM)</h2>
+               <div class="yes-diet">
+                  <ul>
+                     <h2>Yes</h2>
+                     <li>One variety of fruit daily (e.g., Apple, Jamkai, Puchakai, Pomegranate (Danima), Kiwi, Dragon fruit)</li>
+                     <li>If blood sugar exceeds 200, switch to: Carrot salad, Kera salad</li>
+                     <li>Nestle Resource Dialysis  </li>
+                  </ul>
+               </div>
+               <div class="no-diet">
+                  <ul>
+                     <h2>No</h2>
+                     <li>Mango, Banana, Grapes, Seetafal, Sapota</li>
+                     <li>Coconut water</li>
+                  </ul>
+               </div>
+            </div>
+            <div class="section-diet" data-time="13">
+               <h2>Lunch (1:00 PM)</h2>
+               <div class="yes-diet">
+                  <ul>
+                     <h2>Yes</h2>
+                     <li>100 grams of brown rice or any combination of Jonna roti or Jonna roti with millet</li>
+                     <li>Avoid white rice (alternate days)</li>
+                     <li>Menthi kura (fenugreek leaves) - recommended daily, even if creatinine levels are high</li>
+                     <li>Sorakai (bottle gourd), Dosakai, Potlakai (ridge gourd)</li>
+                     <li>Kandi Pappy, Rajma, Chole, Soya, Meal maker</li>
+                  </ul>
+               </div>
+               <div class="no-diet">
+                  <ul>
+                     <h2>No</h2>
+                     <li>Vegetables like Potato, Sweet Potato, Kanda Gadda (yam), Chamagadda (taro)</li>
+                     <li>Leafy vegetables (if creatinine is high, exceeding 2)</li>
+                     <li>Tomato monagaku soup</li>
+                  </ul>
+               </div>
+            </div>
+            <div class="section-diet" data-time="17">
+               <h2>Evening (5:00 PM)</h2>
+               <div class="yes-diet">
+                  <ul>
+                     <li>Dry fruits  </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="section-diet" data-time="20">
+               <h2>Dinner (8:00 PM)</h2>
+               <div class="yes-diet">
+                  <ul>
+                     <li>Ragi roti, Ragi upma, or Millet upma (avoid in liquid form as it increases sugar levels)</li>
+                  </ul>
+               </div>
+            </div>
+            <div class="section-diet" data-time="21">
+               <h2>Bedtime (9:00 PM)</h2>
+               <div class="yes-diet">
+                  <ul>
+                     <li>
+                     <li>Nestle Resource Dialysis  </li>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         <button class="save-button" onclick="saveRemainData()">Save</button>
+      </div>
+      <button class="diet-button-diet" onclick="toggleDietDiet()">Diet</button>
+      <script>
+         function checkAndHighlight() {
+            	const now = new Date();
+            	const currentMinutes = now.getHours() * 60 + now.getMinutes();
+            	const rows = document.querySelectorAll("tbody tr");
+         
+            	rows.forEach(row => {
+                	const cells = row.querySelectorAll("td");
+                	cells.forEach(cell => {
+                    	const timeMatch = cell.textContent.match(/(\d{1,2}):(\d{2}) (AM|PM)/);
+                    	if (timeMatch) {
+                        	let [_, hours, minutes, period] = timeMatch;
+                        	hours = parseInt(hours, 10);
+                        	minutes = parseInt(minutes, 10);
+                        	if (period === 'PM' && hours !== 12) hours += 12;
+                        	if (period === 'AM' && hours === 12) hours = 0;
+                        	const cellMinutes = hours * 60 + minutes;
+         
+                        	if (Math.abs(currentMinutes - cellMinutes) <= 35) {
+                            	cell.classList.add("highlight");
+                        	}
+                    	}
+                	});
+            	});
+         }
+         
+         setInterval(checkAndHighlight, 60000); // Check every minute
+         checkAndHighlight(); // Initial check
+         function saveRemainData() {
+            	const remainInputs = document.querySelectorAll(".remain-input");
+            	const remainData = [];
+         
+            	remainInputs.forEach((input, index) => {
+                	remainData.push(input.value);
+            	});
+         
+            	// Save the data in localStorage
+            	localStorage.setItem('remainData', JSON.stringify(remainData));
+         
+            	alert("Data saved successfully!");
+         }
+         
+         function loadRemainData() {
+            	const savedData = JSON.parse(localStorage.getItem('remainData'));
+         
+            	if (savedData && savedData.length) {
+                	const remainInputs = document.querySelectorAll(".remain-input");
+                	remainInputs.forEach((input, index) => {
+                    	input.value = savedData[index] || '';
+                	});
+            	}
+         }
+         
+         // Load saved data when the page is loaded
+         window.onload = function() {
+            	loadRemainData();
+         };
+      </script>
+      <script>
+         function toggleDietDiet() {
+         const containerDiet = document.querySelector('.container-diet');
+         const targetToShow = document.getElementById('early-morning'); // Target for "Early Morning"
+         const targetToHide = document.getElementById('pan-40'); // Target for "Pan 40 (gas tablet)"
+         
+         if (containerDiet.style.display === 'none' || containerDiet.style.display === '') {
+            // Show the container and scroll to the "Early Morning" <h2>
+            containerDiet.style.display = 'block';
+            targetToShow.scrollIntoView({ behavior: 'smooth' });
+         } else {
+            // Hide the container and scroll to the "Pan 40" <td>
+            containerDiet.style.display = 'none';
+            targetToHide.scrollIntoView({ behavior: 'smooth' });
+         window.scrollTo({ top: 0, behavior: 'smooth' });
+         }
+         }
+         
+         
+             
+             const sectionsDiet = document.querySelectorAll('.section-diet');
+             const nowDiet = new Date();
+             const currentHourDiet = nowDiet.getHours();
+             const currentMinutesDiet = nowDiet.getMinutes();
+             
+             sectionsDiet.forEach(sectionDiet => {
+                	const sectionTimeDiet = parseInt(sectionDiet.getAttribute('data-time'));
+                	const startTimeDiet = sectionTimeDiet * 60; // Convert section time to minutes
+                	const endTimeDiet = startTimeDiet + 40; // Add 40 minutes to the section time
+                	const currentTimeInMinutesDiet = currentHourDiet * 60 + currentMinutesDiet;
+             
+                	if (currentTimeInMinutesDiet >= startTimeDiet && currentTimeInMinutesDiet < endTimeDiet) {
+                    	sectionDiet.classList.add('active-diet');
+                	}
+             });
+          
+      </script>
+   </body>
 </html>
- 
-
-
