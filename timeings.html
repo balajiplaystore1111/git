@@ -217,15 +217,15 @@ transform: scale(1.10);       /* Increase size by 1.30x */
                </tr>
                <tr>
                   <td>1</td>
-                  <td>Glucobay 25 </td>
-                  <td>✔ Before Breakfast</td>
+                  <td>Glucobay 25(B.F) </td>
+                  <td>✔ 7:50 AM</td>
                   <td></td>
                   <td><input type="text" class="remain-input" value=""></td>
                </tr>
                <tr>
                   <td>8</td>
-                  <td>Pantocid 40mg</td>
-                  <td>✔ Before Breakfast</td>
+                  <td>Pantocid 40mg( B.F)</td>
+                  <td>✔ 7:50 AM</td>
                   <td></td>
                   <td><input type="text" class="remain-input" value=""></td>
                </tr>
@@ -278,20 +278,21 @@ transform: scale(1.10);       /* Increase size by 1.30x */
                   <td></td>
                   <td><input type="text" class="remain-input" value=""></td>
                </tr>
+   <tr>
+                  <td>13</td>
+                  <td>Tab 4 Abrad (B.D)</td>
+                  <td></td>
+                  <td>✔ 7:50 PM</td>
+                  <td><input type="text" class="remain-input" value=""></td>
+               </tr>
                <tr>
                   <td>10</td>
-                  <td>Razel or Rosuvas</td>
+                  <td>Razel or Rosuvas(B.T)</td>
                   <td></td>
-                  <td>✔ Bedtime</td>
+                  <td>✔ 9:00 PM</td>
                   <td><input type="text" class="remain-input" value=""></td>
                </tr>
-               <tr>
-                  <td>13</td>
-                  <td>Tab 4 Abrad</td>
-                  <td></td>
-                  <td>✔ Before Dinner</td>
-                  <td><input type="text" class="remain-input" value=""></td>
-               </tr>
+            
             </tbody>
          </table>
          <div class="container-diet">
@@ -485,7 +486,7 @@ transform: scale(1.10);       /* Increase size by 1.30x */
              sectionsDiet.forEach(sectionDiet => {
                 	const sectionTimeDiet = parseInt(sectionDiet.getAttribute('data-time'));
                 	const startTimeDiet = sectionTimeDiet * 60; // Convert section time to minutes
-                	const endTimeDiet = startTimeDiet + 40; // Add 40 minutes to the section time
+                	const endTimeDiet = startTimeDiet + 25; // Add 40 minutes to the section time
                 	const currentTimeInMinutesDiet = currentHourDiet * 60 + currentMinutesDiet;
              
                 	if (currentTimeInMinutesDiet >= startTimeDiet && currentTimeInMinutesDiet < endTimeDiet) {
