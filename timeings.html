@@ -417,7 +417,7 @@
                         	if (period === 'AM' && hours === 12) hours = 0;
                         	const cellMinutes = hours * 60 + minutes;
          
-                        	if (Math.abs(currentMinutes - cellMinutes) <= 35) {
+                        	if (Math.abs(currentMinutes - cellMinutes) <= 30) {
                             	cell.classList.add("highlight");
                         	}
                     	}
@@ -425,7 +425,7 @@
             	});
          }
          
-         setInterval(checkAndHighlight, 60000); // Check every minute
+         setInterval(checkAndHighlight, 60); // Check every minute
          checkAndHighlight(); // Initial check
          function saveRemainData() {
             	const remainInputs = document.querySelectorAll(".remain-input");
@@ -485,7 +485,7 @@
              sectionsDiet.forEach(sectionDiet => {
                 	const sectionTimeDiet = parseInt(sectionDiet.getAttribute('data-time'));
                 	const startTimeDiet = sectionTimeDiet * 60; // Convert section time to minutes
-                	const endTimeDiet = startTimeDiet + 25; // Add 40 minutes to the section time
+                	const endTimeDiet = startTimeDiet + 40; // Add 40 minutes to the section time
                 	const currentTimeInMinutesDiet = currentHourDiet * 60 + currentMinutesDiet;
              
                 	if (currentTimeInMinutesDiet >= startTimeDiet && currentTimeInMinutesDiet < endTimeDiet) {
@@ -496,5 +496,7 @@
       </script>
    </body>
 </html>
+
+
 
 
